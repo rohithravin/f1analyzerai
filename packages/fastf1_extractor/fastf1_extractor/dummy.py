@@ -1,9 +1,11 @@
 "Dummy functions for testing purposes."
 
-def dummy_add(x,y):
-    "Dummy function to add two numbers."
-    return x + y
 
-def dummy_subtract(x,y):
+def dummy_add(value_x, value_y):
+    "Dummy function to add two numbers."
+    return value_x + value_y
+
+
+def dummy_subtract(value_x, value_y):
     "Dummy function to subtract two numbers."
-    return x - y
+    return value_x - value_y

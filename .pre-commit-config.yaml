@@ -4,16 +4,13 @@ repos:
     hooks:
       - id: black
 
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.12.0
-    hooks:
-      - id: isort
-
-  - repo: local
+  - repo: https://github.com/pre-commit/mirrors-pylint
+    rev: v3.0.0a5
     hooks:
       - id: pylint
         name: Run pylint
-        entry: poetry run pylint
-        language: system
+        language: python
         types: [python]
         files: ^packages/|^ui/
+        exclude: ^packages/.*/tests/
+
