@@ -1,0 +1,24 @@
+[project]
+name = "fastf1-extractor"
+version = "0.1.0"
+description = "Responsible for pulling raw session data from the FastF1 API."
+authors = [
+    {name = "Rohith Ravindranath",email = "rohithravin@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy (>=2.3.2,<3.0.0)",
+    "pandas (>=2.3.1,<3.0.0)",
+    "fastf1 (>=3.6.0,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+

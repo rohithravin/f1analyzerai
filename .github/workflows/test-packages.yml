@@ -1,0 +1,69 @@
+name: Build, Test, and Report Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-test-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.11]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Build, Test, and Generate Coverage Reports
+        run: |
+          mkdir -p coverage-reports
+          for dir in packages/*; do
+            if [ -f "$dir/pyproject.toml" ]; then
+                echo "📦 Processing $dir"
+
+                cd "$dir"
+
+                poetry install --with dev --no-interaction
+                poetry build
+
+                VENV_PATH=$(poetry env info --path)
+                source "$VENV_PATH/bin/activate"
+
+                PACKAGE_NAME=$(basename "$dir")
+
+                echo "🧪 Running pytest with coverage for package: $PACKAGE_NAME"
+                pytest --cov=$PACKAGE_NAME \
+                    --cov-report=html \
+                    --cov-report=term \
+                    --cov-fail-under=80 || exit 1
+
+                # Save report in shared folder
+                mkdir -p ../../coverage-reports/$PACKAGE_NAME
+                cp -r htmlcov ../../coverage-reports/$PACKAGE_NAME
+
+                deactivate
+                cd - > /dev/null
+            fi
+          done
+
+      - name: Upload coverage HTML reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html-reports
+          path: coverage-reports/
