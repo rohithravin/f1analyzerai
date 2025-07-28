@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "f1analyzeai-app"
+version = "0.1.0"
+description = ""
+authors = ["Rohith Ravindranath <rohithravin@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "f1analyzeai_app", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+streamlit = ">=1.47.1,<2.0.0"
+fastf1_extractor = { path = "../../packages/fastf1_extractor" }
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+ruff = "^0.12.5"
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start-f1-app = "start_app:main"
