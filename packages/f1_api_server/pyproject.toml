@@ -14,6 +14,8 @@ fastf1_extractor = { path = "../fastf1_extractor" }
 
 [tool.poetry.group.dev.dependencies]
 httpx = "^0.28.1"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
