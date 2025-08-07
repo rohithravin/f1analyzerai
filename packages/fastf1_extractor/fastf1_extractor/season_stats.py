@@ -1,5 +1,5 @@
-"Dummy functions for testing purposes."
-from re import A
+""" Module for retrieving F1 season statistics such as driver and constructor standings."""
+
 import warnings
 import pandas as pd
 import fastf1_extractor.jolpi_client as jc
