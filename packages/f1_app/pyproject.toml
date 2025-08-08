@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "f1-app"
+version = "0.1.0"
+description = ""
+authors = ["Rohith Ravindranath <rohithravin@gmail.com>"]
+
+packages = [
+  { include = "f1_app", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+django = ">=5.2.5,<6.0.0"
+pandas = ">=2.3.1,<3.0.0"
+numpy = ">=2.3.2,<3.0.0"
+djangorestframework = ">=3.16.1,<4.0.0"
+django-cors-headers = ">=4.7.0,<5.0.0"
+fastf1_extractor = { path = "../fastf1_extractor" }
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
