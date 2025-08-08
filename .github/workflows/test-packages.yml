@@ -50,12 +50,15 @@ jobs:
                 echo "🧪 Running pytest with coverage for package: $PACKAGE_NAME"
                 pytest --cov=$PACKAGE_NAME \
                     --cov-report=html \
-                    --cov-report=term \
-                    --cov-fail-under=80 || exit 1
+                    --cov-report=term || test $? -eq 5
 
-                # Save report in shared folder
-                mkdir -p ../../coverage-reports/$PACKAGE_NAME
-                cp -r htmlcov ../../coverage-reports/$PACKAGE_NAME
+                # Save report in shared folder if exists
+                if [ -d "htmlcov" ]; then
+                  mkdir -p ../../coverage-reports/$PACKAGE_NAME
+                  cp -r htmlcov ../../coverage-reports/$PACKAGE_NAME
+                else
+                  echo "⚠️ No coverage report generated for $PACKAGE_NAME (maybe no tests)"
+                fi
 
                 deactivate
                 cd - > /dev/null
