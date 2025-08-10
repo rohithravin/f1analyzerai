@@ -64,8 +64,8 @@ def test_get_driver_standings_success(mock_jc):
     df = get_driver_standings()
     assert isinstance(df, pd.DataFrame)
     assert df.shape == (1, 14)
-    assert df.iloc[0]["Driver Name"] == "Oscar Piastri"
-    assert df.iloc[0]["Constructor ID"] == "mclaren"
+    assert df.iloc[0]["DriverName"] == "Oscar Piastri"
+    assert df.iloc[0]["ConstructorID"] == "mclaren"
     mock_jc.assert_called_once()
 
 
