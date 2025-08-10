@@ -1,0 +1,272 @@
+{% load static %}
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Table - Brand</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" />
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar align-items-start p-0 sidebar sidebar-dark accordion bg-gradient-primary navbar-dark" style="background: #15151e;">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center m-0 sidebar-brand" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-car-front-fill">
+                            <path
+                                d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="mx-3 sidebar-brand-text"><span>F1 DASHBOARD</span></div>
+                </a>
+                <hr class="my-0 sidebar-divider" />
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-tachometer-alt"></i><span>Grand Prixs</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'drivers' %}"><i class="fas fa-user"></i><span>Drivers</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'constructors' %}"><i class="fas fa-table"></i><span>Constructors</span></a>
+                    </li>
+                </ul>
+                <div class="text-center d-none d-md-inline">
+                    <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                </div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-expand-md shadow mb-4 topbar">
+                    <div class="container-fluid">
+                        <span class="d-none d-lg-inline me-2 text-gray-600 small" style="font-size: 40px;">2025 Season&nbsp;</span>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                        <span class="text-center d-none d-lg-inline me-2 text-gray-600 small">Season&nbsp;</span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="1em"
+                                            height="1em"
+                                            fill="currentColor"
+                                            viewBox="0 0 16 16"
+                                            class="bi bi-calendar-event-fill"
+                                        >
+                                            <path
+                                                d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"
+                                            ></path>
+                                        </svg>
+                                    </a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="#">2025</a>
+                                        <a class="dropdown-item" href="#">2024</a>
+                                        <a class="dropdown-item" href="#">2023</a>
+                                        <a class="dropdown-item" href="#">2022</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Team</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Employee Info</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                        <label class="form-label"
+                                            >Show&nbsp;
+                                            <select class="d-inline-block form-select form-select-sm">
+                                                <option value="10" selected>10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>&nbsp;
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <label class="form-label"
+                                            ><input
+                                                type="search"
+                                                class="form-control form-control-sm"
+                                                aria-controls="dataTable"
+                                                placeholder="Search"
+                                            />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive mt-2 table" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar1.jpeg' %}" />Airi Satou
+                                            </td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td>2008/11/28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar2.jpeg' %}" />Angelica Ramos
+                                            </td>
+                                            <td>Chief Executive Officer(CEO)</td>
+                                            <td>London</td>
+                                            <td>47</td>
+                                            <td>2009/10/09</td>
+                                            <td>$1,200,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar3.jpeg' %}" />Ashton Cox
+                                            </td>
+                                            <td>Junior Technical Author</td>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar4.jpeg' %}" />Bradley Greer
+                                            </td>
+                                            <td>Software Engineer</td>
+                                            <td>London</td>
+                                            <td>41</td>
+                                            <td>2012/10/13</td>
+                                            <td>$132,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar5.jpeg' %}" />Brenden Wagner
+                                            </td>
+                                            <td>Software Engineer</td>
+                                            <td>San Francisco</td>
+                                            <td>28</td>
+                                            <td>2011/06/07</td>
+                                            <td>$206,850</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar1.jpeg' %}" />Brielle Williamson
+                                            </td>
+                                            <td>Integration Specialist</td>
+                                            <td>New York</td>
+                                            <td>61</td>
+                                            <td>2012/12/02</td>
+                                            <td>$372,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar2.jpeg' %}" />Bruno Nash
+                                            </td>
+                                            <td>Software Engineer</td>
+                                            <td>London</td>
+                                            <td>38</td>
+                                            <td>2011/05/03</td>
+                                            <td>$163,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar3.jpeg' %}" />Caesar Vance
+                                            </td>
+                                            <td>Pre-Sales Support</td>
+                                            <td>New York</td>
+                                            <td>21</td>
+                                            <td>2011/12/12</td>
+                                            <td>$106,450</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar4.jpeg' %}" />Cara Stevens
+                                            </td>
+                                            <td>Sales Assistant</td>
+                                            <td>New York</td>
+                                            <td>46</td>
+                                            <td>2011/12/06</td>
+                                            <td>$145,600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="rounded-circle me-2" width="30" height="30" src="{% static 'img/avatars/avatar5.jpeg' %}" />Cedric Kelly
+                                            </td>
+                                            <td>Senior JavaScript Developer</td>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Position</strong></td>
+                                            <td><strong>Office</strong></td>
+                                            <td><strong>Age</strong></td>
+                                            <td><strong>Start date</strong></td>
+                                            <td><strong>Salary</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © F1 Dashboard 2025</span></div>
+                </div>
+            </footer>
+        </div>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+</body>
+
+</html>
