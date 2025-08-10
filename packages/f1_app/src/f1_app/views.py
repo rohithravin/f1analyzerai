@@ -1,4 +1,7 @@
+""" Views for the F1 app """
+
 # views.py
+from datetime import datetime
 import pandas as pd
 from django.shortcuts import render
 
@@ -6,58 +9,27 @@ from django.shortcuts import render
 from fastf1_extractor.season_stats import (
     get_driver_standings,
     get_constructor_standings,
+    get_season_rounds,
 )
-
-
-# def home(request):
-
-#     # Get driver standings DataFrame
-#     df = get_driver_standings()
-#     df2 = get_constructor_standings()
-
-#     # Convert DataFrame to HTML table (Bootstrap styling optional)
-#     table_html = df.to_html(classes="table table-striped", index=False)
-#     table2_html = df2.to_html(classes="table table-striped", index=False)
-
-#     return render(request, "home.html", {"table": table_html, "table2": table2_html})
 
 
 def index(request):
     """Index page view."""
-    season = request.GET.get("season", 2025)  # default to 2025 if not provided
-    grand_prix_list = [
-        {
-            "name": "Singapore Grand Prix",
-            "location": "Singapore, Singapore",
-            "date": "Oct 18, 2025",
-            "avatar": "img/avatars/avatar1.jpeg",
-        },
-        # ... add more races ...
-    ] * 10  # for example, repeat 10 times
+    season = request.GET.get("season", 2025)
+    grand_prix_list_raw = get_season_rounds(season).to_dict(orient="records")
+    today = datetime.today().date()
 
-    season_years = [
-        2025,
-        2024,
-        2023,
-        2022,
-        2021,
-        2020,
-        2019,
-        2018,
-        2017,
-        2016,
-        2015,
-        2014,
-        2013,
-        2012,
-        2011,
-        2010,
-        2009,
-        2008,
-        2007,
-        2006,
-        2005,
-    ]
+    # Add 'is_past' flag
+    grand_prix_list = []
+    for race in grand_prix_list_raw:
+        race_date = datetime.strptime(
+            race["Date"], "%Y-%m-%d"
+        ).date()  # adapt format if needed
+        race["is_past"] = race_date > today
+        grand_prix_list.append(race)
+
+    season_years = list(range(2025, 2004, -1))
+
     return render(
         request,
         "index.html",
@@ -77,3 +49,8 @@ def drivers(request):
 def constructors(request):
     """Constructors page view."""
     return render(request, "constructors.html")
+
+
+def race(request):
+    """Race page view."""
+    return render(request, "race.html")

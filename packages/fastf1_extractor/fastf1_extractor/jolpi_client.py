@@ -15,6 +15,46 @@ TIMEOUT_SECONDS = int(os.getenv("JOLPICA_F1_TIMEOUT", "10"))
 logger = logging.getLogger(__name__)
 
 
+def get_season_rounds(season: int = 2025) -> Optional[List[Dict[str, Any]]]:
+    """Get the list of rounds for a specific season, handling pagination.
+
+    Parameters
+    ----------
+    season : int, optional
+        The F1 season year to retrieve rounds for, by default 2025
+
+    Returns
+    -------
+    Optional[List[Dict[str, Any]]]
+        A list of dictionaries containing round information
+    """
+    all_rounds = []
+    limit = 30
+    offset = 0
+
+    while True:
+        endpoint = f"/{season}/races/?limit={limit}&offset={offset}"
+        data = make_get_request(endpoint)
+
+        if not data:
+            break
+
+        try:
+            races = data["MRData"]["RaceTable"]["Races"]
+            all_rounds.extend(races)
+
+            total = int(data["MRData"]["total"])
+            offset += limit
+
+            if offset >= total:
+                break
+
+        except (KeyError, IndexError):
+            break
+
+    return all_rounds if all_rounds else None
+
+
 def get_constructor_standings(season: int = 2025) -> Optional[List[Dict[str, Any]]]:
     """Get constructor standings for a specific season.
 
