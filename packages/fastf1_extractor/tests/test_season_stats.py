@@ -103,7 +103,7 @@ def test_get_constructor_standings_success(mock_jc):
     df = get_constructor_standings()
     assert isinstance(df, pd.DataFrame)
     assert df.shape == (1, 7)
-    assert df.iloc[0]["Constructor Name"] == "McLaren"
+    assert df.iloc[0]["ConstructorName"] == "McLaren"
     assert df.iloc[0]["Points"] == "559"
     mock_jc.assert_called_once()
 
