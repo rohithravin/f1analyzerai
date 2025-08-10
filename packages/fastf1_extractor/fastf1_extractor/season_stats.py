@@ -5,6 +5,45 @@ import pandas as pd
 import fastf1_extractor.jolpi_client as jc
 
 
+def get_season_rounds(season=2025):
+    """Get the list of race rounds for a specific season.
+
+    Parameters
+    ----------
+    season : int, optional
+        The F1 season year to retrieve rounds for, by default 2025
+
+    Returns
+    -------
+    list
+        A list of race round names for the specified season
+    """
+    data = jc.get_season_rounds(season)
+    if not data:
+        warnings.warn(
+            "No data returned from Jolpi API for "
+            "fastf1_extractor.jolpi_client.get_season_rounds()",
+            UserWarning,
+        )
+        return None
+
+    df = pd.DataFrame(
+        [
+            {
+                "Round": entry["round"],
+                "RaceName": entry["raceName"],
+                "CircuitID": entry["Circuit"]["circuitId"],
+                "Locality": entry["Circuit"]["Location"]["locality"],
+                "Country": entry["Circuit"]["Location"]["country"],
+                "Date": entry["date"],
+            }
+            for entry in data
+        ]
+    )
+
+    return df
+
+
 def get_driver_standings(season: int = 2025):
     """Get driver standings for a specific season.
 
@@ -30,20 +69,20 @@ def get_driver_standings(season: int = 2025):
     df = pd.DataFrame(
         [
             {
-                "Position Number": entry["position"],
-                "Driver Name": f"{entry['Driver']['givenName']} {entry['Driver']['familyName']}",
+                "PositionNumber": entry["position"],
+                "DriverName": f"{entry['Driver']['givenName']} {entry['Driver']['familyName']}",
                 "Points": entry["points"],
                 "Wins": entry["wins"],
-                "Driver Code": entry["Driver"]["code"],
-                "Driver Number": entry["Driver"]["permanentNumber"],
-                "Driver DOB": entry["Driver"]["dateOfBirth"],
-                "Driver Nationality": entry["Driver"]["nationality"],
-                "Driver URL": entry["Driver"]["url"],
-                "Driver ID": entry["Driver"]["driverId"],
-                "Constructor Name": entry["Constructors"][-1]["name"],
-                "Constructor Nationality": entry["Constructors"][-1]["nationality"],
-                "Constructor URL": entry["Constructors"][-1]["url"],
-                "Constructor ID": entry["Constructors"][-1]["constructorId"],
+                "DriverCode": entry["Driver"]["code"],
+                "DriverNumber": entry["Driver"]["permanentNumber"],
+                "DriverDOB": entry["Driver"]["dateOfBirth"],
+                "DriverNationality": entry["Driver"]["nationality"],
+                "DriverURL": entry["Driver"]["url"],
+                "DriverID": entry["Driver"]["driverId"],
+                "ConstructorName": entry["Constructors"][-1]["name"],
+                "ConstructorNationality": entry["Constructors"][-1]["nationality"],
+                "ConstructorURL": entry["Constructors"][-1]["url"],
+                "ConstructorID": entry["Constructors"][-1]["constructorId"],
             }
             for entry in data
         ]
@@ -77,13 +116,13 @@ def get_constructor_standings(season: int = 2025):
     df = pd.DataFrame(
         [
             {
-                "Position Number": entry["position"],
-                "Constructor Name": entry["Constructor"]["name"],
+                "PositionNumber": entry["position"],
+                "ConstructorName": entry["Constructor"]["name"],
                 "Points": entry["points"],
                 "Wins": entry["wins"],
-                "Constructor Nationality": entry["Constructor"]["nationality"],
-                "Constructor URL": entry["Constructor"]["url"],
-                "Constructor ID": entry["Constructor"]["constructorId"],
+                "ConstructorNationality": entry["Constructor"]["nationality"],
+                "ConstructorURL": entry["Constructor"]["url"],
+                "ConstructorID": entry["Constructor"]["constructorId"],
             }
             for entry in data
         ]

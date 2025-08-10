@@ -58,23 +58,54 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="row">
-                        {% for race in grand_prix_list %}
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card text-light shadow py-2 border-left-danger" style="background: rgb(21,21,30);">
-                                <div class="card-body">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col me-2">
-                                            <div class="text-dark mb-0 fw-bold h5"><span style="color: var(--bs-light);font-size: 30px;"><strong>{{ race.name }}x</strong></span></div>
-                                            <div class="text-uppercase text-primary mb-1 fw-bold text-xs"><span style="border-color: var(--bs-navbar-hover-color);color: var(--bs-light);font-size: 20px;">{{ race.location }}</span>
-                                                <div class="text-uppercase text-primary mb-1 fw-bold text-xs"><span style="border-color: var(--bs-navbar-hover-color);color: var(--bs-secondary);font-size: 15px;">{{ race.date }}</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+  {% for race in grand_prix_list %}
+    <div class="col-md-6 col-xl-3 mb-4">
+      {% if not race.is_past %}
+        <a href="{% url 'race' %}?round={{ race.Round }}" style="text-decoration: none;">
+          <div class="card text-light shadow py-2 border-left-danger" style="background: rgba(21,21,30); cursor: pointer;">
+            <div class="card-body">
+              <div class="row g-0 align-items-center">
+                <div class="col me-2">
+                  <div class="text-dark mb-0 fw-bold h5">
+                    <span style="color: var(--bs-light); font-size: 30px;"><strong>Round {{ race.Round }}</strong></span>
+                  </div>
+                  <div class="text-uppercase text-primary mb-1 fw-bold text-xs">
+                    <span style="border-color: var(--bs-navbar-hover-color); color: var(--bs-light); font-size: 20px;">{{ race.RaceName }}</span>
+                    <div class="text-uppercase text-primary mb-1 fw-bold text-xs">
+                      <span style="border-color: var(--bs-navbar-hover-color); color: var(--bs-secondary); font-size: 15px;">{{ race.Country }} {{ race.Date }}</span>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <div class="card text-light shadow py-2 border-left-danger" style="background: rgb(21,21,30, 0.73); cursor: default;">
+          <div class="card-body">
+            <div class="row g-0 align-items-center">
+              <div class="col me-2">
+                <div class="text-dark mb-0 fw-bold h5">
+                  <span style="color: var(--bs-light); font-size: 30px;"><strong>Round {{ race.Round }}</strong></span>
+                </div>
+                <div class="text-uppercase text-primary mb-1 fw-bold text-xs">
+                  <span style="border-color: var(--bs-navbar-hover-color); color: var(--bs-light); font-size: 20px;">{{ race.RaceName }}</span>
+                  <div class="text-uppercase text-primary mb-1 fw-bold text-xs">
+                    <span style="border-color: var(--bs-navbar-hover-color); color: var(--bs-secondary); font-size: 15px;">{{ race.Country }} {{ race.Date }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+
                 </div>
             </div>
         </div>
